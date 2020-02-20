@@ -64,18 +64,19 @@ def algorithm(book_num,lib_num,scan_days,libraries,books,book_scores) :
     lib_sorted_signup_half.sort(key = signup_density,reverse = True)
     # print(lib_sorted_signup_half)
 
-
+    op_libs = []
+    op_books = []
     #lib_index will be ordered by signup density factor
     for i in range(0,len(lib_sorted_signup_half)):
-        op_libs.append([lib_sorted_signup_half[0],2])
-        for i in range(0,2):
-            
-            
+        op_libs.append([lib_sorted_signup_half[i][0],2])
+        book_list = [int(scores[i]) for i in books[lib_sorted_signup_half[i][0]]]
+        book_list.sort(reverse = True)             
 
+        op_books.append([book_list[0],book_list[1]])
 
-        op_books.append()
-
-
+    print(op_libs)
+    print(op_books)
+    write("asf.txt",len(lib_sorted_signup_half),op_libs,op_books)
     #returns a list of lists op_libs containing lib_index, num of books for scanning. op_books contains books sent for scanning
     return op_libs,op_books
 
@@ -99,14 +100,15 @@ def write(filename,num_libs,libraries,books):
         fileObj.write(str(num_libs)+"\n")
 
         for i in range(len(libraries)) : 
+            # print(libraries)
             if(i%2==0):
-                fileObj.write(str(libraries[i][0]) +" "+ str(libraries[1]+"\n"))
+                fileObj.write(str(libraries[i][0]) +" "+ str(libraries[i][1])+"\n")
             else:
                 for j in range(0,len(books[i])):
                     if(j==len(books[i])-1):
-                        fileObj.write(str(books[i][j]+"\n"))
+                        fileObj.write(str(books[i][j])+"\n")
                     else:
-                        fileObj.write(str(books[i][j]+" "))
+                        fileObj.write(str(books[i][j])+" ")
 
 
 algorithm(book_num,lib_num,scan_days,libraries,books,scores)
