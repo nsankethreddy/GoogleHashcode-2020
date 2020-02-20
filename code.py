@@ -20,13 +20,13 @@ with open(path + "a_example.txt","r") as fileObj:
     #stores number of books , signup process time in days, and the num of books lib can ship per day
     libraries = []
     a = fileObj.readlines()
-    print(a)
+    #print(a)
     x = []
     y =[]
     for i in range(len(a)):
         if(i%2==0):
             x = a[i].split()
-            x_int = [int(i), int(x[0]), int(x[1]), int(x[2])]
+            x_int = [int(i)/2, int(x[0]), int(x[1]), int(x[2])]
             libraries.append(x_int)
         else:
             x = a[i].split()
@@ -35,5 +35,10 @@ with open(path + "a_example.txt","r") as fileObj:
                 y.append(int(i))
             books.append(y)
 
-print(books)
+#print(books)
+print(libraries)
+
+def takeSecond(elem):
+    return elem[2]
+libraries.sort(key=takeSecond)
 print(libraries)
