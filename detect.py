@@ -1,6 +1,6 @@
 print("Hello")
-path = "/root/docs/GoogleHashcode-2020/"
-with open(path + "a_example.txt","r") as fileObj:
+
+with open(./input/+ "a_example.txt","r") as fileObj:
     '''
     print("Opened")
     first_line = f.readline()
