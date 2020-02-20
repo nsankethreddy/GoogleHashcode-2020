@@ -1,4 +1,4 @@
-path = "/root/docs/GoogleHashcode-2020/"
+path = "./input/"
 with open(path + "a_example.txt","r") as fileObj:
     '''
     print("Opened")
