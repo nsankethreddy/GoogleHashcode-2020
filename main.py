@@ -38,19 +38,27 @@ with open(input_file,"r") as fileObj:
 
     print(libraries)
     print(books)
+    print(scores)
 
 def algorithm(book_num,lib_num,scan_days,libraries,books,book_scores) : 
     #only book_num of books can be sent
     #book_num is length of book_scores
     #get total book score for all books in each library, order by them
-    
-
+    # print(libraries)
+    lib_old = libraries
+    libraries.sort(key = book_score_func)
+    print(libraries)
 
 
 
     #returns a list of lists op_libs containing lib_index, num of books for scanning. op_books contains books sent for scanning
     return op_libs,op_books
 
+#takes every element in library as argument
+def book_score_func(elem) : 
+    l = [int(scores[i]) for i in books[elem[0]]]
+    print(sum(l))
+    return sum(l)
 
 
 
@@ -69,3 +77,4 @@ def write(filename,num_libs,libraries,books):
                         fileObj.write(str(books[i][j]+" "))
 
 
+algorithm(book_num,lib_num,scan_days,libraries,books,scores)
