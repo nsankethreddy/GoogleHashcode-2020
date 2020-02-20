@@ -8,4 +8,4 @@ Problem statement given in PDF
 * D - tough choices: 4,109,170
 * E - so many books: 3,644,730
 * F - libraries of the world: 2,420,875
-## Total: 21,465,662
+**Total: 21,465,662**
