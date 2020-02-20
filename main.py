@@ -14,10 +14,18 @@ with open(input_file,'r') as fileObj:
     # print(a)
     for i in range(len(a)):
         if(i%2==0):
-            libraries.append([a[i].rstrip('\n')])
+            x = a[i].rstrip('\n')
+            x = x.split(" ")
+            for i in range(0,len(x)) : 
+                x[i] = int(x[i])
+            libraries.append(x)
+
         else:
-            # print("ajfk" ,a[i])
-            books.append([a[i].rstrip('\n')])
+            y = (a[i].rstrip('\n'))
+            y = y.split(" ")
+            for i in range(0,len(y)) : 
+                y[i] = int(y[i])
+            books.append(y)
 
 print(books)
 print(libraries)
