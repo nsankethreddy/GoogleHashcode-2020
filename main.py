@@ -36,8 +36,36 @@ with open(input_file,"r") as fileObj:
                 y.append(int(i))
             books.append(y)
 
-print(books)
-print(libraries)
+    print(libraries)
+    print(books)
 
+def algorithm(book_num,lib_num,scan_days,libraries,books,book_scores) : 
+    #only book_num of books can be sent
+    #book_num is length of book_scores
+    #get total book score for all books in each library, order by them
+    
+
+
+
+
+    #returns a list of lists op_libs containing lib_index, num of books for scanning. op_books contains books sent for scanning
+    return op_libs,op_books
+
+
+
+
+def write(filename,num_libs,libraries,books): 
+    with open(filename,'w') as fileObj : 
+        fileObj.write(str(num_libs)+"\n")
+
+        for i in range(len(libraries)) : 
+            if(i%2==0):
+                fileObj.write(str(libraries[i][0]) +" "+ str(libraries[1]+"\n"))
+            else:
+                for j in range(0,len(books[i])):
+                    if(j==len(books[i])-1):
+                        fileObj.write(str(books[i][j]+"\n"))
+                    else:
+                        fileObj.write(str(books[i][j]+" "))
 
 
