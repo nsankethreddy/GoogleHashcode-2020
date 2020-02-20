@@ -1,4 +1,3 @@
-print("Hello")
 path = "/root/docs/GoogleHashcode-2020/"
 with open(path + "a_example.txt","r") as fileObj:
     '''
@@ -11,7 +10,7 @@ with open(path + "a_example.txt","r") as fileObj:
     second_line = f.readline()
     second_line = second_line.split()
     '''
-    book_num,lib_num,scan_days = fileObj.readline().split(" ")
+    B,L,D = fileObj.readline().split(" ")
     #keeps scores of books , index is book ID
     scores = fileObj.readline().split(" ")
     scores[len(scores)-1] = scores[len(scores)-1].rstrip('\n')
@@ -35,10 +34,8 @@ with open(path + "a_example.txt","r") as fileObj:
                 y.append(int(i))
             books.append(y)
 
-#print(books)
-print(libraries)
-
 def takeSecond(elem):
     return elem[2]
+
 libraries.sort(key=takeSecond)
 print(libraries)
