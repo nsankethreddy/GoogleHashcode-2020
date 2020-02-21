@@ -1,7 +1,7 @@
-# path = "/root/doc
-# 
-# s/GoogleHashcode-2020/"
-with open("input/f_libraries_of_the_world.txt","r") as fileObj:
+input_file = "input/b_read_on.txt"
+
+#stores 
+with open(input_file,"r") as fileObj:
     '''
     print("Opened")
     first_line = f.readline()
@@ -12,27 +12,22 @@ with open("input/f_libraries_of_the_world.txt","r") as fileObj:
     second_line = f.readline()
     second_line = second_line.split()
     '''
-    B,L,D = fileObj.readline().split()
-    B = int(B)
-    L = int(L)
-    D = int(D)
+    book_num,lib_num,scan_days = fileObj.readline().split(" ")
     #keeps scores of books , index is book ID
-    s = fileObj.readline().split()
-    #scores[len(scores)-1] = scores[len(scores)-1].rstrip('\n')
+    scores = fileObj.readline().split(" ")
+    scores[len(scores)-1] = scores[len(scores)-1].rstrip('\n')
     #stores  book ID . each index represnts corresponding library in the library multi list
-    print(B,L,D)
-    scores = [int(i) for i in s]
     books = []
     #stores number of books , signup process time in days, and the num of books lib can ship per day
     libraries = []
     a = fileObj.readlines()
+    # print(a)
     x = []
     y =[]
     for i in range(len(a)-1):
         if(i%2==0):
             x = a[i].split()
-            print(a[i-1].split())
-            x_int = [int(i)/2, int(x[0]), int(x[1]), int(x[2])]
+            x_int = [int(i/2), int(x[0]), int(x[1]), int(x[2])]
             libraries.append(x_int)
         else:
             x = a[i].split()
@@ -41,54 +36,79 @@ with open("input/f_libraries_of_the_world.txt","r") as fileObj:
                 y.append(int(i))
             books.append(y)
 
-def takeSecond(elem):
+
+    # print(libraries)
+    # print(books)
+    # print(scores)
+
+def algorithm(book_num,lib_num,scan_days,libraries,books,book_scores) : 
+    #only book_num of books can be sent
+    #book_num is length of book_scores
+    #get total book score for all books in each library, order by them
+    # print(libraries)
+    lib_old1 = libraries
+    lib_old2 = libraries
+
+    libraries.sort(key = book_score_func)
+    lib_sorted_score = libraries
+    lib_old1.sort(key = signup_func)
+    lib_sorted_signup = lib_old1
+    # print(lib_sorted_score)
+    # print(lib_sorted_signup)
+
+    #get half of the libraries based on signup time in asc
+    lib_sorted_signup_half = []
+    for i in range(0,len(lib_sorted_signup)/2) : 
+        lib_sorted_signup_half.append(lib_sorted_signup[i])
+    
+    lib_sorted_signup_half.sort(key = signup_density,reverse = True)
+    # print(lib_sorted_signup_half)
+
+    op_libs = []
+    op_books = []
+    #lib_index will be ordered by signup density factor
+    for i in range(0,len(lib_sorted_signup_half)):
+        op_libs.append([lib_sorted_signup_half[i][0],2])
+        book_list = [int(scores[i]) for i in books[lib_sorted_signup_half[i][0]]]
+        book_list.sort(reverse = True)             
+
+        op_books.append([book_list[0],book_list[1]])
+
+    print(op_libs)
+    print(op_books)
+    write("asf.txt",len(lib_sorted_signup_half),op_libs,op_books)
+    #returns a list of lists op_libs containing lib_index, num of books for scanning. op_books contains books sent for scanning
+    return op_libs,op_books
+
+#takes every element in library as argument
+def book_score_func(elem) : 
+    l = [int(scores[i]) for i in books[elem[0]]]
+    # print(sum(l))
+    return sum(l)
+
+def signup_func(elem):
     return elem[2]
 
-libraries.sort(key=takeSecond)
+def signup_density(elem) : 
+    l = [int(scores[i]) for i in books[elem[0]]]
+    m = sum(l)*elem[3]/elem[2]
+    return m
+    # m = m/
 
-sum = 0
-for i in range(len(libraries)):
-    sum+=libraries[i][2]
-    if(sum > D):
-        last_lib_id = i - 1
-        break
-    last_lib_id = i
+def write(filename,num_libs,libraries,books): 
+    with open(filename,'w') as fileObj : 
+        fileObj.write(str(num_libs)+"\n")
 
-libraries = libraries[:last_lib_id+1:]
-num_libs = len(libraries) # A of output
-#print(libraries)
+        for i in range(len(libraries)) : 
+            # print(libraries)
+            if(i%2==0):
+                fileObj.write(str(libraries[i][0]) +" "+ str(libraries[i][1])+"\n")
+            else:
+                for j in range(0,len(books[i])):
+                    if(j==len(books[i])-1):
+                        fileObj.write(str(books[i][j])+"\n")
+                    else:
+                        fileObj.write(str(books[i][j])+" ")
 
-books_to_scan = []
-cumulative_days = 0
-#print(libraries[0][0])
 
-def bookScore(elem):
-    return scores[elem]
-
-for i in libraries:
-    cumulative_days += i[2]
-    days_left = D - cumulative_days
-    max_books = days_left * i[3]
-    books_in_lib = books[i[0]]
-    books_in_lib.sort(key=bookScore, reverse=True)
-    #print("cum_days",cumulative_days,"\ndays_left",days_left,"\ni[3]",i[3],"\nmax_books",max_books)
-    if(len(books_in_lib) <= max_books):
-        books_to_scan.append(books_in_lib)
-    else:
-        temp = []
-        for j in range(0,len(books_in_lib)):
-            if(j <= max_books):
-                temp.append(books_in_lib[j])
-        books_to_scan.append(temp)
-
-#print(books_to_scan)
-
-with open("outputf.txt","w") as f:
-    f.write(str(num_libs)+"\n")
-    for i in range(len(libraries)):
-        f.write(str(libraries[i][0])+" "+str(len(books_to_scan[i]))+"\n")
-        s = ""
-        for j in books_to_scan[i]:
-            s = s + str(j) + " "
-        f.write(s + "\n")
-#print(s)
+algorithm(book_num,lib_num,scan_days,libraries,books,scores)
