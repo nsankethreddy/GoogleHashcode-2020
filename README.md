@@ -1,7 +1,10 @@
 # Google-Hashcode-2020
-Problem statement given in PDF  
-Input data files in "input" folder
-Output stored in "output"
+* Problem statement given in PDF  
+* Input data files in "input" folder
+* Output stored in "output"
+* Main code is "code.py".
+
+To execute, run ```python code.py```
 
 # Scores
 * A - example: 21
