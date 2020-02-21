@@ -1,15 +1,5 @@
 path = "./"
 with open(path + "f_libraries_of_the_world.txt","r") as fileObj:
-    '''
-    print("Opened")
-    first_line = f.readline()
-    first_line = first_line.split()
-    B = int(first_line[0])
-    L = int(first_line[1])
-    D = int(first_line[2])
-    second_line = f.readline()
-    second_line = second_line.split()
-    '''
     B,L,D = fileObj.readline().split()
     B = int(B)
     L = int(L)
