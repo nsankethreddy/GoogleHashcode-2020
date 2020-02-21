@@ -1,4 +1,4 @@
-path = "/root/docs/GoogleHashcode-2020/"
+path = "./"
 with open(path + "f_libraries_of_the_world.txt","r") as fileObj:
     '''
     print("Opened")
