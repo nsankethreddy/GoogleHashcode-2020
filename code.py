@@ -5,8 +5,8 @@
 path = "/root/docs/GoogleHashcode-2020/" #Change path accordingly
 filenames = ["a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books", "f_libraries_of_the_world"]
 
-for i in filenames:
-    file = path + i
+for X in filenames:
+    file = path + "/input/" + X
     with open(file + ".txt", "r") as fileObj:
         B,L,D = fileObj.readline().split()
         B = int(B)
@@ -73,7 +73,7 @@ for i in filenames:
                     temp.append(books_in_lib[j])
             books_to_scan.append(temp)
 
-
+    file = path + "/output/" + X
     with open(file + "_output.txt","w") as f:
         f.write(str(num_libs)+"\n")
         for i in range(len(libraries)):
