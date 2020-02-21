@@ -2,7 +2,7 @@
 # Authors: Abhishek Das, Bhargav SNV, N Sanketh Reddy, Rama Krishna Siddharth V
 # Final Score: 21,465,662
 
-path = "/root/docs/GoogleHashcode-2020/" #Change path accordingly
+path = "./" #Change path accordingly
 filenames = ["a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books", "f_libraries_of_the_world"]
 
 for X in filenames:
