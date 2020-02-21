@@ -17,15 +17,13 @@ with open(path + "f_libraries_of_the_world.txt","r") as fileObj:
     a = fileObj.readlines()
     x = []
     y =[]
+    x1 =[]
     x_int =[]
     for i in range(len(a)):
         if(i%2==0):
             x = a[i].split()
-            #print(x)
             x1 = [int(x[0]),int(x[1]),int(x[2])]
-            #print(x1)
             x_int = [int(int(i)/2),x1[0],x1[1],x1[2]]
-            #print(x_int)
             libraries.append(x_int)
         else:
             x = a[i].split()
@@ -37,7 +35,6 @@ def takeSecond(elem):
     return elem[2]
 
 libraries.sort(key=takeSecond)
-#print(libraries)
 
 sum = 0
 for i in range(len(libraries)):
@@ -46,15 +43,11 @@ for i in range(len(libraries)):
         last_lib_id = i - 1
         break
     last_lib_id = i
-#print("last lib",i)
 
 libraries = libraries[:last_lib_id+1:]
-num_libs = len(libraries) # A of output
-#print(libraries)
-
+num_libs = len(libraries)
 books_to_scan = []
 cumulative_days = 0
-#print(libraries[0][0])
 
 def bookScore(elem):
     return scores[elem]
@@ -65,7 +58,7 @@ for i in libraries:
     max_books = days_left * i[3]
     books_in_lib = books[i[0]]
     books_in_lib.sort(key=bookScore, reverse=True)
-    #print("cum_days",cumulative_days,"\ndays_left",days_left,"\ni[3]",i[3],"\nmax_books",max_books)
+
     if(len(books_in_lib) <= max_books):
         books_to_scan.append(books_in_lib)
     else:
@@ -75,8 +68,6 @@ for i in libraries:
                 temp.append(books_in_lib[j])
         books_to_scan.append(temp)
 
-#print(books_to_scan)
-
 with open(path + "output.txt","w") as f:
     f.write(str(num_libs)+"\n")
     for i in range(len(libraries)):
@@ -85,4 +76,4 @@ with open(path + "output.txt","w") as f:
         for j in books_to_scan[i]:
             s = s + str(j) + " "
         f.write(s + "\n")
-#print(s)
+
