@@ -1,6 +1,7 @@
 # Google-Hashcode-2020
 Problem statement given in PDF  
-Test files in "input" folder
+Input data files in "input" folder
+Output stored in "output"
 
 # Scores
 * A - example: 21
@@ -12,4 +13,4 @@ Test files in "input" folder
   
 **Total: 21,465,662**
   
-![](imges/ss1.png)
+![](images/ss1.png)
