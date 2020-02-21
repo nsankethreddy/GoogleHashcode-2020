@@ -11,7 +11,4 @@ Test files in "input" folder
 * F - libraries of the world: 2,420,875 
   
 **Total: 21,465,662**
-    
 ![](imges/ss1.png)
-
-
