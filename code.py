@@ -1,4 +1,4 @@
-path = "./"
+path = "./input/"
 with open(path + "f_libraries_of_the_world.txt","r") as fileObj:
 
     B,L,D = fileObj.readline().split()
