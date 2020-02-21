@@ -1,5 +1,6 @@
 # Google-Hashcode-2020
-Problem statement given in PDF
+Problem statement given in PDF  
+Test files in "input" folder
 
 # Scores
 * A - example: 21
