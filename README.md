@@ -2,9 +2,9 @@
 * Problem statement given in PDF  
 * Input data files in "input" folder
 * Output stored in "output"
-* Main code is "code.py".
+* Main code is "code.py". Written in python 2.7
 
-To execute, run ```python code.py```
+To execute, run ```python code.py``` or with your corresponding python 2.7 like ```python2.7 code.py```  
 
 # Scores
 * A - example: 21
